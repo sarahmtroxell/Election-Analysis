@@ -58,8 +58,8 @@ The analysis of the election by county show that:
 ## Summary
 The output of this script contains accurate statstical data that can be used to determine the winner of any election along with voter turnout data by county. If the results file format is changed, your team can easily fix the code to continue to work. Additonally, this script may be easily used by your team to audit future elections, whether they are at the local level or have a larger data set, such as the state level. The script may also be modified to extract and summarize additonal data about voters and the votes recieved.
 
-### Election Results File Format
-This code was built to function properly using the "election_results.csv" input file provided by your team. This file contained the Ballot ID, County, and Candidate Name chosen by columns in order. The code was written to function properly with input files where the second column must include the County the vote was cast in and the third column must contain the full name of the candidate voted for. If future election files have the County or Candidate Name data in a different column location, you will have to modify the code where that index is referenced. The picture below shows the two lines of code that would need to be updated if the column order changed. 
+### Input File Column Order
+This code was built to function properly using the "election_results.csv" input file provided by your team. Regardless of whether more candidate options are added or additonal counties are added, this code will continue to work because the code was written to track new names and counties as they are read. This file contained the Ballot ID, County, and Candidate Name chosen by columns in order. The code was written to function properly with input files where the second column must include the County the vote was cast in and the third column must contain the full name of the candidate voted for. If future election files have the County or Candidate Name data in a different column location, you will have to modify the code where that index is referenced. The picture below shows the two lines of code that would need to be updated if the column order changed. 
 
 ```
 # Get the candidate name from each row.
@@ -77,7 +77,14 @@ candidate_name = row[5]
 county_name = row[0]
 ```
 
-### Demographic Information
-The Board of Elections may want to know demographic information about the citizens that voted in a future election. This code can easily be modified to include data such as the percent of voters by gender, age, or income. This data would need to first be collected and inserted into the election_results.csv file. Then, 
+### File Mapping
+The Board of Elections may have issues with their code running if the election_results.csv input file's name or location changes. The path names for the input file and the export of the final results file were saved to variables in the code. This means if the input file's location changed in the futurr or they want the file output to a different location, the only line of code that needs to be changed is where the variables are set. The code referenes these variables throughout the analysis instead of the hard coded path, which makes the code easier to maintain. 
 
+The current file paths shown below are setup read an input .csv file named election_results saved in a folder named Resources. An output .txt file named election_analysis is created in a folder named analysis. The Board of elections can modify this code as file names or desired folder locations change.
 
+```
+# Add a variable to load a file from a path.
+file_to_load = os.path.join("Resources", "election_results.csv")
+# Add a variable to save the file to a path.
+file_to_save = os.path.join("analysis", "election_analysis.txt")
+```
