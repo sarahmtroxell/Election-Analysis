@@ -16,7 +16,29 @@ The Colorado Board of Elections provided complete data from the recent election 
 - Software: Python 3.9.12, Visual Studio Code, 1.67.2
 - Output File: election-analysis.txt
 
+    ```
+    Election Results
+    -------------------------
+    Total Votes: 369,711
+    -------------------------
 
+    County Votes:
+    Jefferson: 10.5% (38,855)
+    Denver: 82.8% (306,055)
+    Arapahoe: 6.7% (24,801)
+
+    -------------------------
+    Largest County Turnout: Denver
+    -------------------------
+    Charles Casper Stockham: 23.0% (85,213)
+    Diana DeGette: 73.8% (272,892)
+    Raymon Anthony Doane: 3.1% (11,606)
+    -------------------------
+    Winner: Diana DeGette
+    Winning Vote Count: 272,892
+    Winning Percentage: 73.8%
+    -------------------------
+    ```
 
 ## Results
 The analysis of the election by county show that: 
@@ -39,14 +61,21 @@ The output of this script contains accurate statstical data that can be used to 
 ### Election Results File Format
 This code was built to function properly using the "election_results.csv" input file provided by your team. This file contained the Ballot ID, County, and Candidate Name chosen by columns in order. The code was written to function properly with input files where the second column must include the County the vote was cast in and the third column must contain the full name of the candidate voted for. If future election files have the County or Candidate Name data in a different column location, you will have to modify the code where that index is referenced. The picture below shows the two lines of code that would need to be updated if the column order changed. 
 
+```
+# Get the candidate name from each row.
+candidate_name = row[2]
+# Extract the county name from each row.
+county_name = row[1]
+```
+
 Please note that Python indexing begins at zero, so even though the Candiaate Name is in the third column of the input file, the code needs to reference the second index. If the Candidate Name moved to the sixth column of data and the County moved to the first column in a future output file, the code will need to be modified as shown below. 
 
-,,,
+```
 # Get the candidate name from each row.
 candidate_name = row[5]
-# 3: Extract the county name from each row.
+# Extract the county name from each row.
 county_name = row[0]
-,,,
+```
 
 ### Demographic Information
 The Board of Elections may want to know demographic information about the citizens that voted in a future election. This code can easily be modified to include data such as the percent of voters by gender, age, or income. This data would need to first be collected and inserted into the election_results.csv file. Then, 
